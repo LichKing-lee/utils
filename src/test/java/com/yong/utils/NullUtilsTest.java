@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -228,5 +230,57 @@ public class NullUtilsTest {
 
         // then
         assertFalse(result);
+    }
+
+    @Test
+    public void ifNullDefault_null(){
+        // given
+        Integer num = null;
+        Integer defaultNum = 5;
+
+        // when
+        Integer result = NullUtils.ifNullDefault(num, defaultNum);
+
+        // then
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void ifNullDefault_nonNull(){
+        // given
+        Integer num = 10;
+        Integer defaultNum = 5;
+
+        // when
+        Integer result = NullUtils.ifNullDefault(num, defaultNum);
+
+        // then
+        assertThat(result, is(10));
+    }
+
+    @Test
+    public void ifNullDefaultSupplier_null(){
+        // given
+        Integer num = null;
+        Integer defaultNum = 5;
+
+        // when
+        Integer result = NullUtils.ifNullDefault(num, () -> defaultNum);
+
+        // then
+        assertThat(result, is(5));
+    }
+
+    @Test
+    public void ifNullDefaultSupplier_nonNull(){
+        // given
+        Integer num = 200;
+        Integer defaultNum = 5;
+
+        // when
+        Integer result = NullUtils.ifNullDefault(num, () -> defaultNum);
+
+        // then
+        assertThat(result, is(200));
     }
 }

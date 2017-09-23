@@ -3,6 +3,7 @@ package com.yong.utils;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 public class NullUtils {
     public static boolean allNull(Object object, Object... objects) {
@@ -45,5 +46,13 @@ public class NullUtils {
     public static boolean someNullCollection(Collection<?> collection) {
         return collection.stream()
                 .anyMatch(Objects::isNull);
+    }
+
+    public static <T> T ifNullDefault(T target, T aDefault) {
+        return Objects.isNull(target) ? aDefault : target;
+    }
+
+    public static <T> T ifNullDefault(T target, Supplier<T> supplier) {
+        return Objects.isNull(target) ? supplier.get() : target;
     }
 }
