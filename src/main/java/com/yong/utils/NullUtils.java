@@ -12,4 +12,13 @@ public class NullUtils {
         return Arrays.stream(objects)
                 .allMatch(Objects::isNull);
     }
+
+    public static boolean allNonNull(Object object, Object... objects) {
+        if(Objects.isNull(object)){
+            return false;
+        }
+
+        return Arrays.stream(objects)
+                .allMatch(Objects::nonNull);
+    }
 }

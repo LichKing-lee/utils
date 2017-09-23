@@ -61,4 +61,60 @@ public class NullUtilsTest {
         // then
         assertFalse(result);
     }
+
+    @Test
+    public void allNonNull_true_인자1개(){
+        // given
+        Object object = new Object();
+
+        // when
+        boolean result = NullUtils.allNonNull(object);
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    public void allNonNull_false_인자1개(){
+        // given
+        Object object = null;
+
+        // when
+        boolean result = NullUtils.allNonNull(object);
+
+        // then
+        assertFalse(result);
+    }
+
+    @Test
+    public void allNonNull_true_인자5개(){
+        // given
+        Object object1 = new Object();
+        Object object2 = new Object();
+        Object object3 = new Object();
+        Object object4 = new Object();
+        Object object5 = new Object();
+
+        // when
+        boolean result = NullUtils.allNonNull(object1, object2, object3, object4, object5);
+
+        // then
+        assertTrue(result);
+    }
+
+    @Test
+    public void allNonNull_false_인자5개(){
+        // given
+        Object object1 = new Object();
+        Object object2 = null;
+        Object object3 = new Object();
+        Object object4 = new Object();
+        Object object5 = new Object();
+
+        // when
+        boolean result = NullUtils.allNonNull(object1, object2, object3, object4, object5);
+
+        // then
+        assertFalse(result);
+    }
 }
