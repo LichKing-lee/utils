@@ -1,4 +1,6 @@
 # utils
+* minimum Java version 1.8
+
 ### NullUtils
 ##### allNull
 * `NullUtils.allNull(Object...)`
