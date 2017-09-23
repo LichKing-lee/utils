@@ -1,6 +1,7 @@
 package com.yong.utils;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Objects;
 
 public class NullUtils {
@@ -13,6 +14,11 @@ public class NullUtils {
                 .allMatch(Objects::isNull);
     }
 
+    public static boolean allNullCollection(Collection<?> collection){
+        return collection.stream()
+                .allMatch(Objects::isNull);
+    }
+
     public static boolean allNonNull(Object object, Object... objects) {
         if(Objects.isNull(object)){
             return false;
@@ -20,5 +26,24 @@ public class NullUtils {
 
         return Arrays.stream(objects)
                 .allMatch(Objects::nonNull);
+    }
+
+    public static boolean allNonNullCollection(Collection<?> collection){
+        return collection.stream()
+                .allMatch(Objects::nonNull);
+    }
+
+    public static boolean someNull(Object object, Object... objects) {
+        if(Objects.isNull(object)){
+            return true;
+        }
+
+        return Arrays.stream(objects)
+                .anyMatch(Objects::isNull);
+    }
+
+    public static boolean someNullCollection(Collection<?> collection) {
+        return collection.stream()
+                .anyMatch(Objects::isNull);
     }
 }
